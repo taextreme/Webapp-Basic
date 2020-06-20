@@ -1,44 +1,40 @@
 package io.muzoo.ooc.webapp.basic.security;
 
+import io.muzoo.ooc.webapp.basic.database.MySQLJava;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Objects;
-
-import io.muzoo.ooc.webapp.basic.database.MySQLJava;
-import org.springframework.security.crypto.bcrypt.*;
 
 public class SecurityService {
 
-    private UserService userService;
-
     private final MySQLJava database = MySQLJava.getInstance();
 
-    public void setUserService(UserService userService) {
-        this.userService = userService;
+    private static final SecurityService securityService = new SecurityService();
+
+    public static SecurityService getInstance() {
+        return securityService;
     }
 
-    public  String getCurrentrUsername(HttpServletRequest request){
+    public String getCurrentrUsername(HttpServletRequest request) {
         HttpSession session = request.getSession();
         Object usernameObj = session.getAttribute("username");
         return (String) usernameObj;
     }
 
-    public boolean isAuthorize(HttpServletRequest request){
+    public boolean isAuthorize(HttpServletRequest request) {
         String username = getCurrentrUsername(request);
-        return userService.checkIfUserExist(username);
+        return (username != null && database.isUser(username));
 
     }
 
-    public boolean authenticate(HttpServletRequest request){
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
+    public boolean authenticate(String username, String password, HttpServletRequest request) {
         boolean success = database.isLogin(username, password);
-        if(success){
+        if (success) {
             HttpSession session = request.getSession();
             session.setAttribute("username", username);
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }

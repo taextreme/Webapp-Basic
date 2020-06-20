@@ -1,15 +1,10 @@
 package io.muzoo.ooc.webapp.basic.database;
 
+import org.springframework.security.crypto.bcrypt.BCrypt;
+
 import java.sql.*;
-import org.springframework.security.crypto.bcrypt.*;
 
 public class MySQLJava {
-
-
-
-    enum TestTableColumns {
-        id, TEXT
-    }
 
     private final String jdbcDriverStr = "com.mysql.jdbc.Driver";
     private final String jdbcURL = "jdbc:mysql://localhost:3306/webapp_users?" + "user=ooc&password=A1234567!";

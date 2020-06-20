@@ -16,9 +16,9 @@ public class Webapp {
         File doceBase = new File("src/main/webapp/");
         doceBase.mkdirs();
 
+        ServletRouter servletRouter = new ServletRouter();
         try {
             Context ctx = tomcat.addWebapp("", doceBase.getAbsolutePath());
-            ServletRouter servletRouter = new ServletRouter();
             servletRouter.inti(ctx);
             tomcat.start();
             tomcat.getServer().await();

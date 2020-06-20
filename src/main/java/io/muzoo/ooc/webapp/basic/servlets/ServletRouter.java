@@ -1,16 +1,10 @@
 package io.muzoo.ooc.webapp.basic.servlets;
 
-import io.muzoo.ooc.webapp.basic.security.SecurityService;
-import io.muzoo.ooc.webapp.basic.security.UserService;
-import io.muzoo.ooc.webapp.basic.servlets.AbstractRoutableHttpServlet;
-import io.muzoo.ooc.webapp.basic.servlets.HomeServlet;
-import io.muzoo.ooc.webapp.basic.servlets.LoginServlet;
-import io.muzoo.ooc.webapp.basic.servlets.LogoutServlet;
+import org.apache.catalina.Context;
 import org.apache.catalina.startup.Tomcat;
 
-import org.apache.catalina.Context;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ServletRouter {
 
@@ -23,16 +17,12 @@ public class ServletRouter {
     }
 
     public void inti(Context ctx){
-        UserService userService = new UserService();
-        SecurityService securityService = new SecurityService();
-        securityService.setUserService(userService);
 
         for(Class<? extends AbstractRoutableHttpServlet> servletClass : servletClasses){
             try{
                 AbstractRoutableHttpServlet httpServlet = servletClass.newInstance();
-                httpServlet.setSecurityService(securityService);
                 Tomcat.addServlet(ctx, servletClass.getSimpleName(), httpServlet);
-                ctx.addServletMapping(httpServlet.getPattern(), servletClass.getSimpleName());
+                ctx.addServletMappingDecoded(httpServlet.getPattern(), servletClass.getSimpleName());
             }
             catch (IllegalAccessException e) {
                 e.printStackTrace();
