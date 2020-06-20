@@ -19,7 +19,7 @@ public class LoginServlet extends AbstractRoutableHttpServlet {
         String error;
 
         // authentication
-        if(securityService.login(request)){
+        if(securityService.authenticate(request)){
             response.sendRedirect("/");
         }
         else{

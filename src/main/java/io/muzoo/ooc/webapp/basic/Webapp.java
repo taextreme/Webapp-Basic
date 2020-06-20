@@ -5,7 +5,6 @@ import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.startup.Tomcat;
 
-import javax.servlet.ServletException;
 import java.io.File;
 
 public class Webapp {
@@ -23,7 +22,7 @@ public class Webapp {
             servletRouter.inti(ctx);
             tomcat.start();
             tomcat.getServer().await();
-        } catch (ServletException | LifecycleException e) {
+        } catch (LifecycleException e) {
             e.printStackTrace();
         }
 
