@@ -1,12 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<title>Login Page</title>
+<title>Register Page</title>
 <body>
 <p>
-<form action="/login" method="post">
-    <h1>Login</h1>
+<form action="/register" method="post">
+    <h1>Register</h1>
     <hr>
-    ${error}
+    ${message}
     <div class="container">
         <label><b>Username</b></label>
         <input type="text" placeholder="Enter Username" name="username" required><br>
@@ -14,10 +14,13 @@
         <label><b>Password</b></label>
         <input type="password" placeholder="Enter Password" name="password" required><br>
 
-        <button type="submit">Login</button>
+        <label><b>Name</b></label>
+        <input type="text" placeholder="Enter Name" name="name" required><br>
+
+        <button type="submit">Submit</button>
     </div>
+
 </form>
-<a class="nav-link" href="/register">Register</a>
 </p>
 </body>
 </html>
