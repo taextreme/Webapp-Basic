@@ -7,9 +7,15 @@
 </p>
 <p>
 <form action="/login" method="post">
-    <input type="text" placeholder="Enter Username" name="username" required><br>
-    <input type="password" placeholder="Enter Password" name="password" required><br>
-    <button type="submit">Login</button>
+    <div class="container">
+        <label><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="username" required><br>
+
+        <label><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="password" required><br>
+
+        <button type="submit">Login</button>
+    </div>
 </form>
 </p>
 </body>
