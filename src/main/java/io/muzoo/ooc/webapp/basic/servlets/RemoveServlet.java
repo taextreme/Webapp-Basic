@@ -23,7 +23,7 @@ public class RemoveServlet extends AbstractRoutableHttpServlet {
                 request.setAttribute("message", message);
             }
         } else {
-            String message = "Why you trying to erase yourself?";
+            String message = "You cannot remove yourself.";
             request.setAttribute("message", message);
         }
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/home.jsp");

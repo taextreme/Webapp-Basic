@@ -20,13 +20,14 @@ public class RegisterServlet extends AbstractRoutableHttpServlet {
         String password = request.getParameter("password");
         String name = request.getParameter("name");
         if (securityService.addNewUser(username, password, name)) {
-            String message = "Successfully created a new user.";
+            String message = "Successfully register a new user.";
             request.setAttribute("message", message);
+            response.sendRedirect("/");
         } else {
-            String message = "An error occurred in creating a new user.";
+            String message = "An error occurred in registering a new user.";
             request.setAttribute("message", message);
         }
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/login.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/register.jsp");
         requestDispatcher.include(request, response);
     }
 

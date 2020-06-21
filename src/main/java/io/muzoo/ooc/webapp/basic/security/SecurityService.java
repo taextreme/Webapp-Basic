@@ -33,6 +33,8 @@ public class SecurityService {
         if (success) {
             HttpSession session = request.getSession();
             session.setAttribute("username", username);
+            int id = getId(username);
+            session.setAttribute("sessionId", id);
             return true;
         } else {
             return false;
@@ -67,6 +69,7 @@ public class SecurityService {
     public void logout(HttpServletRequest request){
         HttpSession session = request.getSession();
         session.removeAttribute("username");
+        session.removeAttribute("sessionId");
         session.invalidate();
     }
 }

@@ -6,7 +6,17 @@
 <form action="/register" method="post">
     <h1>Register</h1>
     <hr>
-    ${message}
+    <%
+        if (request.getAttribute("message") != null) {
+    %>
+    <div>
+        <div class="card-body">
+            <%=request.getAttribute("message") %>
+        </div>
+    </div>
+    <%
+        }
+    %>
     <div class="container">
         <label><b>Username</b></label>
         <input type="text" placeholder="Enter Username" name="username" required><br>
@@ -21,6 +31,7 @@
     </div>
 
 </form>
+<a class="nav-link" href="/">Leave</a>
 </p>
 </body>
 </html>

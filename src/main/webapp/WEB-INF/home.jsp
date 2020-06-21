@@ -10,19 +10,8 @@
 <h2>
     Hello ${username}
 </h2>
-<a class="button" href="/logout">Logout</a><br>
-<br>
-<%
-    if (request.getAttribute("message") != null) {
-%>
-<div>
-    <div class="card-body">
-        <%=request.getAttribute("message") %>
-    </div>
-</div>
-<%
-    }
-%>
+<a class="nav-link" href="/register">Register</a><br>
+<a class="nav-link" href="/logout">Logout</a><br>
 <br>
 <div class="container">
     <table>
@@ -48,6 +37,20 @@
             </td>
             <td><%= nameEntry %>
             </td>
+            <td>
+                <% if (idEntry != (Integer) request.getSession().getAttribute("sessionId")) { %>
+
+                <div>
+                    <form action="/removeuser" method="post">
+                        <input type="hidden" id="id-to-remove" name="id-to-remove" value="<%= idEntry%>"
+                               data-confirm="You are about to remove the user <%= nameEntry%>. Are you sure?">
+                        <button type="submit" onclick="return confirm('Are you sure you want to Remove?');">Remove
+                        </button>
+                    </form>
+                </div>
+
+                <% } %>
+            </td>
             <%
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -58,6 +61,17 @@
         </tbody>
     </table>
     <br>
+    <%
+        if (request.getAttribute("message") != null) {
+    %>
+    <div>
+        <div class="card-body">
+            <%=request.getAttribute("message") %>
+        </div>
+    </div>
+    <%
+        }
+    %>
     <div>
         <label><b>Edit User</b></label>
         <form action="/edituser" method="post">
@@ -79,10 +93,16 @@
                     <input type="text" class="form-control" id="name-edit" name="name-edit">
                 </div>
                 <button type="submit" class="btn btn-primary">Edit user</button>
+                <button type="reset" value="Reset">Reset</button>
             </div>
         </form>
     </div>
+    <div>
+
+    </div>
 </div>
 </p>
+
+
 </body>
 </html>

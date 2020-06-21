@@ -6,7 +6,17 @@
 <form action="/login" method="post">
     <h1>Login</h1>
     <hr>
-    ${error}
+    <%
+        if (request.getAttribute("message") != null) {
+    %>
+    <div>
+        <div class="card-body">
+            <%=request.getAttribute("message") %>
+        </div>
+    </div>
+    <%
+        }
+    %>
     <div class="container">
         <label><b>Username</b></label>
         <input type="text" placeholder="Enter Username" name="username" required><br>
