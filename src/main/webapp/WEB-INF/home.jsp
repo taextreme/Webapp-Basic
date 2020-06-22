@@ -7,9 +7,10 @@
 <p>
 <h1>Home</h1>
 <hr>
-<h2>
-    Hello ${username}
-</h2>
+<h2>Hello ${name}</h2>
+<div>Username: ${username}</div>
+<div>ID: ${sessionId}</div>
+<br>
 <a class="nav-link" href="/register">Register</a><br>
 <a class="nav-link" href="/logout">Logout</a><br>
 <br>
@@ -17,11 +18,15 @@
     table, th, td {
         border: 1px solid black;
     }
+
+    h2, h3, p {
+        margin: 0;
+    }
 </style>
 <div class="container">
     <table>
         <thead>
-        <h4>Users Table</h4>
+        <h3>Users Table</h3>
         <tr>
             <th>ID</th>
             <th>Username</th>

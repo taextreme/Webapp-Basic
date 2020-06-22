@@ -14,6 +14,8 @@ public class HomeServlet extends AbstractRoutableHttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if(securityService.isAuthorize(request)){
             String username = securityService.getCurrentrUsername(request);
+            String name = securityService.getName(username);
+            request.setAttribute("name", name);
             request.setAttribute("username", username);
 
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/home.jsp");
@@ -22,8 +24,6 @@ public class HomeServlet extends AbstractRoutableHttpServlet {
         else{
             response.sendRedirect("/login");
         }
-
-
 
     }
 

@@ -3,11 +3,16 @@ package io.muzoo.ooc.webapp.basic.database;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import java.sql.*;
+import java.util.Optional;
 
 public class MySQLJava {
 
-    private final String jdbcDriverStr = "com.mysql.jdbc.Driver";
-    private final String jdbcURL = "jdbc:mysql://localhost:3306/webapp_users?" + "user=ooc&password=A1234567!";
+    public static final String database_Hostname = Optional.ofNullable(System.getenv("DATABASE_HOSTNAME")).orElse("localhost");
+    public static final String database_Port = Optional.ofNullable(System.getenv("DATABASE_PORT")).orElse("3306");
+
+    public static final String jdbcDriverStr = "com.mysql.jdbc.Driver";
+    public static final String jdbcURL = String.format("jdbc:mysql://%s:%s/webapp_users?useSSL=false&characterEncoding=UTF-8&user=ooc&password=A1234567!", database_Hostname, database_Port);
+
 
     private Connection connection;
     private Statement statement;
