@@ -11,7 +11,7 @@ public class MySQLJava {
     public static final String database_Port = Optional.ofNullable(System.getenv("DATABASE_PORT")).orElse("3306");
 
     public static final String jdbcDriverStr = "com.mysql.jdbc.Driver";
-    public static final String jdbcURL = String.format("jdbc:mysql://%s:%s/webapp_users?useSSL=false&characterEncoding=UTF-8&user=ooc&password=A1234567!", database_Hostname, database_Port);
+    public static final String jdbcURL = String.format("jdbc:mysql://%s:%s/webappdb?useSSL=false&characterEncoding=UTF-8&user=ooc&password=A1234567!", database_Hostname, database_Port);
 
 
     private Connection connection;
@@ -38,7 +38,7 @@ public class MySQLJava {
 
     public boolean isUser(String username){
         try {
-            preparedStatement = connection.prepareStatement("select * from webapp_users.web_user_table where username=?;");
+            preparedStatement = connection.prepareStatement("select * from webappdb.userstable where username=?;");
             preparedStatement.setString(1, username);
             resultSet = preparedStatement.executeQuery();
             return resultSet.isBeforeFirst();
@@ -51,7 +51,7 @@ public class MySQLJava {
 
     public boolean isLogin(String user, String pwd){
         try {
-            preparedStatement = connection.prepareStatement("select password from webapp_users.web_user_table where username=?;");
+            preparedStatement = connection.prepareStatement("select password from webappdb.userstable where username=?;");
             preparedStatement.setString(1, user);
             resultSet = preparedStatement.executeQuery();
             if(resultSet.isBeforeFirst()) {
@@ -70,7 +70,7 @@ public class MySQLJava {
 
     public int getId(String username){
         try {
-            preparedStatement = connection.prepareStatement("select id FROM webapp_users.web_user_table where username=?;");
+            preparedStatement = connection.prepareStatement("select id FROM webappdb.userstable where username=?;");
             preparedStatement.setString(1, username);
             resultSet = preparedStatement.executeQuery();
             resultSet.next();
@@ -83,7 +83,7 @@ public class MySQLJava {
 
     public String getUsername(int id){
         try {
-            preparedStatement = connection.prepareStatement("select username from webapp_users.web_user_table where id=?;");
+            preparedStatement = connection.prepareStatement("select username from webappdb.userstable where id=?;");
             preparedStatement.setInt(1, id);
             resultSet = preparedStatement.executeQuery();
             resultSet.next();
@@ -97,7 +97,7 @@ public class MySQLJava {
 
     public String getName(int userID){
         try {
-            preparedStatement = connection.prepareStatement("select name from webapp_users.web_user_table where id=?;");
+            preparedStatement = connection.prepareStatement("select name from webappdb.userstable where id=?;");
             preparedStatement.setInt(1, userID);
             resultSet = preparedStatement.executeQuery();
             resultSet.next();
@@ -111,7 +111,7 @@ public class MySQLJava {
 
     public String getName(String username){
         try {
-            preparedStatement = connection.prepareStatement("select name from webapp_users.web_user_table where username=?;");
+            preparedStatement = connection.prepareStatement("select name from webappdb.userstable where username=?;");
             preparedStatement.setString(1, username);
             resultSet = preparedStatement.executeQuery();
             resultSet.next();
@@ -125,7 +125,7 @@ public class MySQLJava {
 
     public boolean addNewUser(String username, String pwd, String name){
         try {
-            preparedStatement = connection.prepareStatement("insert into webapp_users.web_user_table values (DEFAULT,?,?,?);");
+            preparedStatement = connection.prepareStatement("insert into webappdb.userstable values (DEFAULT,?,?,?);");
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, pwd);
             preparedStatement.setString(3, name);
@@ -139,7 +139,7 @@ public class MySQLJava {
 
     public ResultSet getUsersData(){
         try{
-            return statement.executeQuery("select id, username, name from webapp_users.web_user_table;");
+            return statement.executeQuery("select id, username, name from webappdb.userstable;");
         } catch(Exception e){
             e.printStackTrace();
             return null;
@@ -148,10 +148,10 @@ public class MySQLJava {
 
     public boolean deleteUser(int id){
         try {
-            preparedStatement = connection.prepareStatement("delete from webapp_users.web_user_table where id=?;");
+            preparedStatement = connection.prepareStatement("delete from webappdb.userstable where id=?;");
             preparedStatement.setInt(1, id);
             preparedStatement.execute();
-            preparedStatement = connection.prepareStatement("ALTER TABLE webapp_users.web_user_table AUTO_INCREMENT = 1");
+            preparedStatement = connection.prepareStatement("ALTER TABLE webappdb.userstable AUTO_INCREMENT = 1");
             preparedStatement.execute();
             return true;
         } catch(Exception e){
@@ -162,7 +162,7 @@ public class MySQLJava {
 
     public boolean editUser(int id, String username, String password, String name){
         try {
-            preparedStatement = connection.prepareStatement("update webapp_users.web_user_table set username=?, password=?, name=? where id=?;");
+            preparedStatement = connection.prepareStatement("update webappdb.userstable set username=?, password=?, name=? where id=?;");
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, BCrypt.hashpw(password, BCrypt.gensalt()));
             preparedStatement.setString(3, name);
