@@ -146,6 +146,8 @@ public class MySQLJava {
             preparedStatement = connection.prepareStatement("delete from webapp_users.web_user_table where id=?;");
             preparedStatement.setInt(1, id);
             preparedStatement.execute();
+            preparedStatement = connection.prepareStatement("ALTER TABLE webapp_users.web_user_table AUTO_INCREMENT = 1");
+            preparedStatement.execute();
             return true;
         } catch(Exception e){
             e.printStackTrace();

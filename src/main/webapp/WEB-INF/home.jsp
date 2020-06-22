@@ -13,9 +13,15 @@
 <a class="nav-link" href="/register">Register</a><br>
 <a class="nav-link" href="/logout">Logout</a><br>
 <br>
+<style>
+    table, th, td {
+        border: 1px solid black;
+    }
+</style>
 <div class="container">
     <table>
         <thead>
+        <h4>Users Table</h4>
         <tr>
             <th>ID</th>
             <th>Username</th>
@@ -42,10 +48,10 @@
 
                 <div>
                     <form action="/removeuser" method="post">
-                        <input type="hidden" id="id-to-remove" name="id-to-remove" value="<%= idEntry%>"
-                               data-confirm="You are about to remove the user <%= nameEntry%>. Are you sure?">
-                        <button type="submit" onclick="return confirm('Are you sure you want to Remove?');">Remove
+                        <button type="submit"
+                                onclick="return confirm('Are you sure you want to Remove <%= nameEntry%>?');">Remove
                         </button>
+                        <input type="hidden" id="id-to-remove" name="id-to-remove" value="<%= idEntry%>">
                     </form>
                 </div>
 
