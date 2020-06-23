@@ -2,5 +2,6 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/src/main/java/io/muzoo/ooc/webapp/basic/database/MySQLJava.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/webappdbStart.sql" dialect="MySQL" />
   </component>
 </project>
