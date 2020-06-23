@@ -11,7 +11,7 @@ public class MySQLJava {
     public static final String database_Port = Optional.ofNullable(System.getenv("DATABASE_PORT")).orElse("3306");
 
     public static final String jdbcDriverStr = "com.mysql.jdbc.Driver";
-    public static final String jdbcURL = String.format("jdbc:mysql://%s:%s/webappdb?useSSL=false&characterEncoding=UTF-8&user=ooc&password=A1234567!", database_Hostname, database_Port);
+    public static final String jdbcURL = String.format("jdbc:mysql://%s:%s/webappdb?useSSL=false&characterEncoding=UTF-8&user=root&password=123456", database_Hostname, database_Port);
 
 
     private Connection connection;
