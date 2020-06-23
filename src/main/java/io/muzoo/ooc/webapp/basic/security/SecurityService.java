@@ -29,8 +29,7 @@ public class SecurityService {
     }
 
     public boolean authenticate(String username, String password, HttpServletRequest request) {
-        boolean success = database.isLogin(username, password);
-        if (success) {
+        if (database.isLogin(username, password)) {
             HttpSession session = request.getSession();
             session.setAttribute("username", username);
             int id = getId(username);
