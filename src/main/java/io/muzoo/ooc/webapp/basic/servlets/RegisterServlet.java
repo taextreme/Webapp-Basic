@@ -27,7 +27,7 @@ public class RegisterServlet extends AbstractRoutableHttpServlet {
             String message = "An error occurred in registering a new user.";
             request.setAttribute("message", message);
         }
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/register.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/src/main/WEB-INF/register.jsp");
         requestDispatcher.include(request, response);
     }
 

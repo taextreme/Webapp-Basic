@@ -11,8 +11,8 @@ public class DisplayUserServlet extends AbstractRoutableHttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (securityService.isAuthorize(request)) {
-            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/home.jsp");
-            rd.include(request, response);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/src/main/WEB-INF/home.jsp");
+            requestDispatcher.include(request, response);
         } else {
             response.sendRedirect("/login");
         }

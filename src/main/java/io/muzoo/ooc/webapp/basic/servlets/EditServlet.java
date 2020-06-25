@@ -20,13 +20,13 @@ public class EditServlet extends AbstractRoutableHttpServlet {
         if (SecurityService.getInstance().editUser(id, username, password, name)) {
             String message = "Successfully edited data of " + name + ".";
             request.setAttribute("message", message);
-            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/home.jsp");
-            rd.include(request, response);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/src/main/WEB-INF/home.jsp");
+            requestDispatcher.include(request, response);
         } else {
             String message = "An error occurred in editing user " + name + ".";
             request.setAttribute("message", message);
-            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/home.jsp");
-            rd.include(request, response);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/src/main/WEB-INF/home.jsp");
+            requestDispatcher.include(request, response);
         }
     }
 

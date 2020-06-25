@@ -26,8 +26,8 @@ public class RemoveServlet extends AbstractRoutableHttpServlet {
             String message = "You cannot remove yourself.";
             request.setAttribute("message", message);
         }
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/home.jsp");
-        rd.include(request, response);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/src/main/WEB-INF/home.jsp");
+        requestDispatcher.include(request, response);
     }
 
     @Override
