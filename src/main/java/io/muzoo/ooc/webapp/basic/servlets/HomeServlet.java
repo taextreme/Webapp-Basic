@@ -18,7 +18,7 @@ public class HomeServlet extends AbstractRoutableHttpServlet {
             request.setAttribute("name", name);
             request.setAttribute("username", username);
 
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/src/main/WEB-INF/home.jsp");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/home.jsp");
             requestDispatcher.include(request, response);
         }
         else{
